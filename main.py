@@ -33,8 +33,8 @@ def load_data():
 
 df = load_data()
 #st.title("WHOLE GARMENT©")
-st.markdown("## **WHOLE GARMENT©**")
-st.markdown("### **MACHINE 01**")
+st.markdown("## <b>WHOLE GARMENT©</b>")
+st.markdown("### <b>MACHINE 01</b>")
 # JST に変換（プロット時のみ）
 df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
 
