@@ -79,11 +79,17 @@ st.pyplot(fig)
 
 
 st.markdown("### **MACHINE 02**")
-
-# グラフ描画（2つのサブプロット）
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
 fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+st.pyplot(fig)
 
 
-# Streamlit で表示
+st.markdown("### **MACHINE 03**")
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+st.pyplot(fig)
+
+st.markdown("### **MACHINE 04**")
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
 st.pyplot(fig)
