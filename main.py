@@ -47,7 +47,7 @@ df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
 fig, ax = plt.subplots()
 
 # 実測値を黒いポイントプロット（サイズ=2）で表示
-ax.scatter(df["timestamp"], df["value"], color="black", s=1, alpha=0.5, label="raw data", fontsize=10)
+ax.scatter(df["timestamp"], df["value"], color="black", s=1, alpha=0.3, label="raw data", fontsize=10)
 
 # 移動平均をオレンジの実線（lw=1）で表示
 ax.plot(df["timestamp"], df["smoothed_value"], label="moving average", linewidth=1, color="orange", fontsize=10)
