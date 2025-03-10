@@ -32,7 +32,7 @@ def load_data():
     return new_timeseries_df
 
 df = load_data()
-st.title("WHOLE GARMENT©")
+st.title("WHOLE GARMENT©", fontsize=16, fontweight="bold")
 
 # JST に変換（プロット時のみ）
 df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
