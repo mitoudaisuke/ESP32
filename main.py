@@ -38,6 +38,19 @@ def load_data():
     new_timeseries_df = pd.DataFrame({'timestamp': timestamps, 'value': values})
     return new_timeseries_df
 
+df = pd.read_csv(SPREADSHEET_URL, header=None, low_memory=False, dtype=str)
+
+# 読み込んだ行数を確認
+st.write(f"✅ 読み込んだ行数: {df.shape[0]} 行")
+st.write(f"✅ 読み込んだ列数: {df.shape[1]} 列")
+
+# 最初と最後の数行を確認
+st.write("✅ データの先頭5行:")
+st.write(df.head())
+
+st.write("✅ データの末尾5行:")
+st.write(df.tail())
+
 df = load_data()
 #st.title("WHOLE GARMENT©")
 st.markdown("# **WxxxE GARMENT©**")
