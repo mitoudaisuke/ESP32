@@ -38,7 +38,7 @@ def load_data():
     new_timeseries_df = pd.DataFrame({'timestamp': timestamps, 'value': values})
     return new_timeseries_df
 
-df = pd.read_csv(SPREADSHEET_URL, header=None, low_memory=False, dtype=str)
+df = load_data()
 
 # 読み込んだ行数を確認
 st.write(f"✅ 読み込んだ行数: {df.shape[0]} 行")
