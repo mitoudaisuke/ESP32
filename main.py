@@ -33,7 +33,7 @@ def load_data():
 
 df = load_data()
 #st.title("WHOLE GARMENT©")
-st.markdown("# **WHOLE GARMENT©**")
+st.markdown("# **WxxxE GARMENT©**")
 st.markdown("### **MACHINE 01**")
 
 # 平滑化（移動平均）
