@@ -32,7 +32,7 @@ def load_data():
     return new_timeseries_df
 
 df = load_data()
-st.title("ESP32C6 LOADCELL PLOT")
+st.title("WHOLE GARMENT©")
 
 # JST に変換（プロット時のみ）
 df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
