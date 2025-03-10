@@ -45,7 +45,7 @@ latest_time = df["timestamp"].max()
 df_recent = df[df["timestamp"] >= latest_time - pd.Timedelta(minutes=10)]
 
 # グラフ描画（2つのサブプロット）
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
 
 ## **全体のトレンド**
 ax1.scatter(df["timestamp"], df["value"], color="black", alpha=0.3, s=1, label="raw data")
