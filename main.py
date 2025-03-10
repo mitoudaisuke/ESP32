@@ -11,8 +11,14 @@ plt.rcParams['font.family'] = 'Noto Sans JP'
 minutes=5#拡大バージョンで何分間を表示するか
 
 def load_data():
-    df = pd.read_csv(SPREADSHEET_URL, header=None)
-    
+    chunk_list = []  # チャンクを一時的に保存するリスト
+    chunksize = 1000  # 一度に読み込む行数（適宜調整）
+
+    for chunk in pd.read_csv(SPREADSHEET_URL, header=None, chunksize=chunksize):
+        chunk_list.append(chunk)
+
+    df = pd.concat(chunk_list, ignore_index=True)  # チャンクを結合
+
     # 1列目のUNIXタイムを datetime に変換（UTCのまま）
     df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s')
     times = df.iloc[:, 0].values.astype('datetime64[ns]')  # datetime64 に変換
