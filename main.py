@@ -35,8 +35,6 @@ df = load_data()
 #st.title("WHOLE GARMENT©")
 st.markdown("# **WHOLE GARMENT©**")
 st.markdown("### **MACHINE 01**")
-# JST に変換（プロット時のみ）
-#df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
 
 # 平滑化（移動平均）
 df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
@@ -70,6 +68,21 @@ jst = pytz.timezone('Asia/Tokyo')
 date_form = DateFormatter("%-H:%M", tz=jst)
 ax1.xaxis.set_major_formatter(date_form)
 ax2.xaxis.set_major_formatter(date_form)
+
+
+
+
+
+
+
+
+
+st.markdown("### **MACHINE 02**")
+
+# グラフ描画（2つのサブプロット）
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+
 
 # Streamlit で表示
 st.pyplot(fig)
