@@ -50,7 +50,7 @@ fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値�
 ## **全体のトレンド**
 ax1.scatter(df["timestamp"], df["value"], color="black", alpha=0.3, s=1, label="line A(raw)")
 ax1.plot(df["timestamp"], df["smoothed_value"], linewidth=1, color="orange",label="line A(average)")
-ax1.plot(df["timestamp"],0, linewidth=1, color="orange",label="line A(average)")
+ax1.plot(df["timestamp"],[0]*len(df["timestamp"]), linewidth=1, color="orange",label="line A(average)")
 ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
