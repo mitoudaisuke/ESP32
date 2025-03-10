@@ -34,37 +34,39 @@ def load_data():
 df = load_data()
 st.title("ESP32C6 LOADCELL PLOT")
 
-# グラフ作成
-st.subheader("MACHINE 01")
-
 # JST に変換（プロット時のみ）
 df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
 
 # 平滑化（移動平均）
 df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
 
-# グラフ描画
-fig, ax = plt.subplots()
+# 最新の10分間のデータのみ抽出
+latest_time = df["timestamp"].max()
+df_recent = df[df["timestamp"] >= latest_time - pd.Timedelta(minutes=10)]
 
-# 実測値を黒いポイントプロット（サイズ=2）で表示
-ax.scatter(df["timestamp"], df["value"], color="black",alpha=0.3, s=1, label="raw data")
+# グラフ描画（2つのサブプロット）
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
-# 移動平均をオレンジの実線（lw=1）で表示
-ax.plot(df["timestamp"], df["smoothed_value"], label="moving average", linewidth=1, color="orange")
+## **全体のトレンド**
+ax1.scatter(df["timestamp"], df["value"], color="black", alpha=0.3, s=1, label="raw data")
+ax1.plot(df["timestamp"], df["smoothed_value"], label="moving average", linewidth=1, color="orange")
+ax1.set_ylabel("LONG TREND", fontsize=14, fontweight="bold")
+ax1.set_title("TENSION TREND (FULL DATA)", fontsize=14, fontweight="bold")
+ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
+ax1.legend()
 
-# X軸・Y軸のグリッドを追加
-ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
-
-# 軸ラベルとタイトル
-ax.set_ylabel("gf (estimated)", fontsize=12, fontweight="bold")
-ax.set_title("TENSION TREND", fontsize=14, fontweight="bold")
+## **最新10分間の拡大版**
+ax2.scatter(df_recent["timestamp"], df_recent["value"], color="black", alpha=0.3, s=2, label="raw data (last 10 min)")
+ax2.plot(df_recent["timestamp"], df_recent["smoothed_value"], label="moving average (last 10 min)", linewidth=1, color="orange")
+ax2.set_ylabel("SHORT TREND", fontsize=14, fontweight="bold")
+ax2.set_title("TENSION TREND (LAST 10 MIN)", fontsize=14, fontweight="bold")
+ax2.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
+ax2.legend()
 
 # JSTタイムゾーンを明示的に設定
 jst = pytz.timezone('Asia/Tokyo')
 date_form = DateFormatter("%-H:%M", tz=jst)
-ax.xaxis.set_major_formatter(date_form)
+ax2.xaxis.set_major_formatter(date_form)
 
-# 凡例追加
-ax.legend()
-
+# Streamlit で表示
 st.pyplot(fig)
