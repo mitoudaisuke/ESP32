@@ -69,7 +69,8 @@ date_form = DateFormatter("%-H:%M", tz=jst)
 ax1.xaxis.set_major_formatter(date_form)
 ax2.xaxis.set_major_formatter(date_form)
 
-
+# Streamlit で表示
+st.pyplot(fig)
 
 
 
