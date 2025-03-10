@@ -67,6 +67,7 @@ ax2.legend()
 # JSTタイムゾーンを明示的に設定
 jst = pytz.timezone('Asia/Tokyo')
 date_form = DateFormatter("%-H:%M", tz=jst)
+ax1.xaxis.set_major_formatter(date_form)
 ax2.xaxis.set_major_formatter(date_form)
 
 # Streamlit で表示
