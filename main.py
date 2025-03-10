@@ -8,7 +8,7 @@ import pytz
 
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1LxsDjDerM2rNYm0UzBRfFCi-izwvLhiOOs457Oj3NCo/gviz/tq?tqx=out:csv"
 plt.rcParams['font.family'] = 'Noto Sans JP'
-
+minutes=5#拡大バージョンで何分間を表示するか
 def load_data():
     df = pd.read_csv(SPREADSHEET_URL, header=None)
     
@@ -41,7 +41,7 @@ df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
 
 # 最新の10分間のデータのみ抽出
 latest_time = df["timestamp"].max()
-df_recent = df[df["timestamp"] >= latest_time - pd.Timedelta(minutes=10)]
+df_recent = df[df["timestamp"] >= latest_time - pd.Timedelta(minutes=minutes)]
 
 # グラフ描画（2つのサブプロット）
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
