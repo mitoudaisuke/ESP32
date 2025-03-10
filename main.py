@@ -5,30 +5,11 @@ import matplotlib.dates as mdates
 import numpy as np
 from matplotlib.dates import DateFormatter
 import pytz
-import matplotlib.font_manager as fm
-
-# 使用環境ごとに適切なフォントをリストで指定
-font_candidates = [
-    "Noto Sans JP",   # 1. 優先: Noto Sans JP（推奨フォント）
-    "Yu Gothic",      # 2. Windows の標準日本語フォント
-    "Meiryo",         # 3. Windows の別の標準フォント
-    "Arial",          # 4. Windows / Mac の一般的なフォント
-    "Helvetica",      # 5. Mac のデフォルトフォント
-    "DejaVu Sans",    # 6. Matplotlib のデフォルトフォント
-]
-
-# 利用可能なフォントのリストを取得
-available_fonts = set(f.name for f in fm.findSystemFonts(fontpaths=None, fontext='ttf') if fm.FontProperties(fname=f).get_name())
-
-# 設定可能なフォントを選択（最初に見つかったものを使用）
-selected_font = next((font for font in font_candidates if font in available_fonts), "DejaVu Sans")
-
-# フォントを設定
-plt.rcParams['font.family'] = selected_font
 
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1LxsDjDerM2rNYm0UzBRfFCi-izwvLhiOOs457Oj3NCo/gviz/tq?tqx=out:csv"
-
+plt.rcParams['font.family'] = 'Noto Sans JP'
 minutes=5#拡大バージョンで何分間を表示するか
+
 def load_data():
     df = pd.read_csv(SPREADSHEET_URL, header=None)
     
