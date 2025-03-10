@@ -32,29 +32,29 @@ def load_data():
     return new_timeseries_df
 
 df = load_data()
-st.title("ESP32C6 Loadcell Plot")
+st.title("ESP32C6 LOADCELL PLOT")
 
 # グラフ作成
-st.subheader("test 01")
+st.subheader("MACHINE 01")
 
 # JST に変換（プロット時のみ）
 df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
 
 # 平滑化（移動平均）
-df["smoothed_value"] = df["value"].rolling(window=5, center=True).mean()
+df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
 
 # グラフ描画
 fig, ax = plt.subplots()
 
 # ラベルを "test 01" に統一
-ax.plot(df["timestamp"], df["smoothed_value"], label="test 01", linewidth=1, alpha=0.75)
+ax.plot(df["timestamp"], df["smoothed_value"], label="string 01", linewidth=1, alpha=0.75, color="black")
 
 # X軸・Y軸のグリッドを追加
 ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
 
 # 軸ラベルとタイトル
 ax.set_ylabel("gf (estimated)", fontsize=12, fontweight="bold")
-ax.set_title("Tension trend", fontsize=14, fontweight="bold")
+ax.set_title("TENSION TREND", fontsize=14, fontweight="bold")
 
 # JSTタイムゾーンを明示的に設定
 jst = pytz.timezone('Asia/Tokyo')
