@@ -60,7 +60,6 @@ ax1.legend()
 ## **最新10分間の拡大版**
 ax2.scatter(df_recent["timestamp"], df_recent["value"], color="black", alpha=0.3, s=2, label="raw data")
 ax2.plot(df_recent["timestamp"], df_recent["smoothed_value"], label="moving average", linewidth=1, color="orange")
-ax2.plot(df_recent["timestamp"], df_recent["smoothed_value"], label="moving average", linewidth=1, color="orange")
 ax2.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax2.set_title("SHORT TREND", fontsize=14, fontweight="bold")
 ax2.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
