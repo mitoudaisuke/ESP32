@@ -36,7 +36,7 @@ df = load_data()
 st.markdown("# **WHOLE GARMENT©**")
 st.markdown("### **MACHINE 01**")
 # JST に変換（プロット時のみ）
-df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
+#df["timestamp"] = df["timestamp"].dt.tz_localize('UTC').dt.tz_convert('Asia/Tokyo')
 
 # 平滑化（移動平均）
 df["smoothed_value"] = df["value"].rolling(window=10, center=True).mean()
