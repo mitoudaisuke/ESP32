@@ -11,15 +11,10 @@ plt.rcParams['font.family'] = 'Noto Sans JP'
 minutes=5#拡大バージョンで何分間を表示するか
 
 def load_data():
-    chunk_list = []  # チャンクを一時的に保存するリスト
-    chunksize = 1000  # 一度に読み込む行数（適宜調整）
-
-    for chunk in pd.read_csv(SPREADSHEET_URL, header=None, chunksize=chunksize):
-        chunk_list.append(chunk)
-
-    df = pd.concat(chunk_list, ignore_index=True)  # チャンクを結合
-    df.iloc[:, 0] = df.iloc[:, 0].astype(float).astype(int)  # float → int に変換
-    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s', errors='coerce')  # UnixTimeを変換
+    df = pd.read_csv(SPREADSHEET_URL, header=None)
+    
+    # 1列目のUNIXタイムを datetime に変換（UTCのまま）
+    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s')
     times = df.iloc[:, 0].values.astype('datetime64[ns]')  # datetime64 に変換
     num_measurements = df.shape[1] - 1  # 測定値の個数（最初の列以外の列数）
     
@@ -36,19 +31,6 @@ def load_data():
     # 連続時系列の DataFrame を作成（この時点では UTC）
     new_timeseries_df = pd.DataFrame({'timestamp': timestamps, 'value': values})
     return new_timeseries_df
-
-df = load_data()
-
-# 読み込んだ行数を確認
-st.write(f"✅ 読み込んだ行数: {df.shape[0]} 行")
-st.write(f"✅ 読み込んだ列数: {df.shape[1]} 列")
-
-# 最初と最後の数行を確認
-st.write("✅ データの先頭5行:")
-st.write(df.head())
-
-st.write("✅ データの末尾5行:")
-st.write(df.tail())
 
 df = load_data()
 #st.title("WHOLE GARMENT©")
