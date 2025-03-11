@@ -18,10 +18,8 @@ def load_data():
         chunk_list.append(chunk)
 
     df = pd.concat(chunk_list, ignore_index=True)  # チャンクを結合
-    print(df.iloc[:, 0].isna().sum())  # NaN の数を確認
-    print(df.iloc[:, 0].head(10))  # 先頭10行を確認
-    # 1列目のUNIXタイムを datetime に変換（UTCのまま）
-    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s', errors='coerce')
+    df.iloc[:, 0] = df.iloc[:, 0].astype(float).astype(int)  # float → int に変換
+    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s', errors='coerce')  # UnixTimeを変換
     times = df.iloc[:, 0].values.astype('datetime64[ns]')  # datetime64 に変換
     num_measurements = df.shape[1] - 1  # 測定値の個数（最初の列以外の列数）
     
