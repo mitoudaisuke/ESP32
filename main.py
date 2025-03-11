@@ -20,7 +20,7 @@ def load_data():
     df = pd.concat(chunk_list, ignore_index=True)  # チャンクを結合
 
     # 1列目のUNIXタイムを datetime に変換（UTCのまま）
-    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s')
+    df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0], unit='s', errors='coerce')
     times = df.iloc[:, 0].values.astype('datetime64[ns]')  # datetime64 に変換
     num_measurements = df.shape[1] - 1  # 測定値の個数（最初の列以外の列数）
     
