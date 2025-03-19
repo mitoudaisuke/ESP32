@@ -51,8 +51,8 @@ fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値�
 ## **全体のトレンド**
 ax1.scatter(df["timestamp"], df["value"], color="black", alpha=0.3, s=1, label="line A(raw)")
 ax1.plot(df["timestamp"], df["smoothed_value"], linewidth=1, color="orange",label="line A(average)")
-ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="tomato",label="line B(average)")
-ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="steelblue",label="line C(average)")
+#ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="tomato",label="line B(average)")
+#ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="steelblue",label="line C(average)")
 ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
@@ -61,8 +61,8 @@ ax1.legend()
 ## **最新10分間の拡大版**
 ax2.scatter(df_recent["timestamp"], df_recent["value"], color="black", alpha=0.3, s=2, label="line A(raw)")
 ax2.plot(df_recent["timestamp"], df_recent["smoothed_value"], linewidth=1, color="orange",label="line A(average)")
-ax2.plot(df_recent["timestamp"],[600]*len(df_recent["timestamp"]), linewidth=1, color="tomato",label="line B(average)")
-ax2.plot(df_recent["timestamp"],[600]*len(df_recent["timestamp"]), linewidth=1, color="steelblue",label="line C(average)")
+#ax2.plot(df_recent["timestamp"],[600]*len(df_recent["timestamp"]), linewidth=1, color="tomato",label="line B(average)")
+#ax2.plot(df_recent["timestamp"],[600]*len(df_recent["timestamp"]), linewidth=1, color="steelblue",label="line C(average)")
 ax2.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax2.set_title("SHORT TREND", fontsize=14, fontweight="bold")
 ax2.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
@@ -83,18 +83,18 @@ st.pyplot(fig)
 
 
 
-st.markdown("### **MACHINE 02**")
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
-fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
-st.pyplot(fig)
+#st.markdown("### **MACHINE 02**")
+#fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+#fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+#st.pyplot(fig)
 
 
-st.markdown("### **MACHINE 03**")
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
-fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
-st.pyplot(fig)
+#st.markdown("### **MACHINE 03**")
+#fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+#fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+#st.pyplot(fig)
 
-st.markdown("### **MACHINE 04**")
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
-fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
-st.pyplot(fig)
+#st.markdown("### **MACHINE 04**")
+#fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+#fig.subplots_adjust(hspace=0.5)  # 2つのグラフの間隔を広げる（値を調整）
+#st.pyplot(fig)
