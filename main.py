@@ -57,7 +57,7 @@ ax1.plot(df["timestamp"], df["smoothed_value"], linewidth=1, color="orange",labe
 # y軸の範囲を固定（適宜値を調整）
 y_min = -4    # 下限値
 y_max = 100 # 上限値
-ax1.set_ylim(ymin, ymax)  # **y軸の範囲を固定**
+ax1.set_ylim(y_min, y_max)  # **y軸の範囲を固定**
 ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
