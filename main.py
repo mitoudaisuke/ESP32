@@ -83,7 +83,7 @@ if latest_timestamp.tzinfo is None:
 midnight = latest_timestamp.astimezone(jst).replace(hour=0)
 
 ax1.text(midnight, y_min - (y_max - y_min) * 0.15, f"├──{today}───",
-         fontsize=12, ha="center", va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
+         fontsize=12, ha="left" , va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
 
 ax1.legend()
 
