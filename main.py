@@ -67,8 +67,8 @@ today = datetime.now(jst).strftime('%Y/%m/%d')
 date_form = DateFormatter("%-H:%M", tz=jst)# JSTタイムゾーンのフォーマット
 ax1.xaxis.set_major_formatter(date_form)
 x_min, x_max = ax1.get_xlim()# x軸の最小値と最大値を取得
-midnight = df["timestamp"].max().replace(hour=0)# 0:00 の位置を特定（x軸の範囲内にある最も近い 0:00）
-ax1.text(midnight, y_min - (y_max - y_min) * 0.05, f"{today} →",
+midnight = df["timestamp"].max().replace(hour=15, minute=0, second=0, microsecond=0)
+ax1.text(midnight, y_min - (y_max - y_min) * 0.1, f"├──{today} ─────→",
          fontsize=12, ha="center", va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
 
 ax1.legend()
