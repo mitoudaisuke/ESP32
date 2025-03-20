@@ -67,7 +67,11 @@ today = datetime.now(jst).strftime('%Y/%m/%d')
 date_form = DateFormatter("%-H:%M", tz=jst)# JSTタイムゾーンのフォーマット
 ax1.xaxis.set_major_formatter(date_form)
 x_min, x_max = ax1.get_xlim()# x軸の最小値と最大値を取得
-midnight = df["timestamp"].max().replace(hour=15, minute=0, second=0, microsecond=0)
+
+jst = pytz.timezone('Asia/Tokyo')
+utc = pytz.utc
+latest_timestamp = df["timestamp"].max()# 最新のタイムスタンプを取得（UTCのまま）
+midnight = latest_timestamp.astimezone(jst).replace(hour=0, minute=0, second=0, microsecond=0)# JSTの0:00を取得
 ax1.text(midnight, y_min - (y_max - y_min) * 0.1, f"├──{today} ─────→",
          fontsize=12, ha="center", va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
 
