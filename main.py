@@ -68,10 +68,20 @@ date_form = DateFormatter("%-H:%M", tz=jst)# JSTタイムゾーンのフォー�
 ax1.xaxis.set_major_formatter(date_form)
 x_min, x_max = ax1.get_xlim()# x軸の最小値と最大値を取得
 
+# タイムゾーンの設定
 jst = pytz.timezone('Asia/Tokyo')
 utc = pytz.utc
-latest_timestamp = df["timestamp"].max()# 最新のタイムスタンプを取得（UTCのまま）
-midnight = latest_timestamp.astimezone(jst).replace(hour=0, minute=0, second=0, microsecond=0)# JSTの0:00を取得
+
+# 最新のタイムスタンプを取得
+latest_timestamp = df["timestamp"].max()
+
+# `latest_timestamp` がタイムゾーンなしなら UTC を明示
+if latest_timestamp.tzinfo is None:
+    latest_timestamp = latest_timestamp.tz_localize(utc)
+
+# JSTの0:00を取得
+midnight = latest_timestamp.astimezone(jst).replace(hour=0, minute=0, second=0, microsecond=0)
+
 ax1.text(midnight, y_min - (y_max - y_min) * 0.1, f"├──{today} ─────→",
          fontsize=12, ha="center", va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
 
