@@ -53,6 +53,7 @@ ax1.scatter(df["timestamp"], df["value"], color="black", alpha=0.3, s=1, label="
 ax1.plot(df["timestamp"], df["smoothed_value"], linewidth=1, color="orange",label="average")
 #ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="tomato",label="line B(average)")
 #ax1.plot(df["timestamp"],[600]*len(df["timestamp"]), linewidth=1, color="steelblue",label="line C(average)")
+ax1.set_ylim(-4, 100)  # **y軸の範囲を固定**
 ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
