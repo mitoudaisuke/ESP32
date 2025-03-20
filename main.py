@@ -5,7 +5,15 @@ import matplotlib.dates as mdates
 import numpy as np
 from matplotlib.dates import DateFormatter
 import pytz
+from datetime import datetime
 
+# JSTの現在日付を取得し、フォーマット
+jst = pytz.timezone('Asia/Tokyo')
+today = datetime.now(jst).strftime('%Y/%m/%d')
+
+# JSTタイムゾーンのフォーマット
+date_form = DateFormatter("%-H:%M", tz=jst)
+ax1.xaxis.set_major_formatter(date_form)
 SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1LxsDjDerM2rNYm0UzBRfFCi-izwvLhiOOs457Oj3NCo/gviz/tq?tqx=out:csv"
 plt.rcParams['font.family'] = 'Noto Sans JP'
 minutes=5#拡大バージョンで何分間を表示するか
@@ -57,6 +65,12 @@ ax1.set_ylim(-4, 100)  # **y軸の範囲を固定**
 ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
+
+x_min, x_max = ax1.get_xlim()# x軸の最小値と最大値を取得
+midnight = df["timestamp"].max().replace(hour=0, minute=0, second=0, microsecond=0)# 0:00 の位置を特定（x軸の範囲内にある最も近い 0:00）
+ax1.text(midnight, y_min - (y_max - y_min) * 0.05, f"{today} →",
+         fontsize=12, ha="center", va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
+
 ax1.legend()
 
 ## **最新10分間の拡大版**
