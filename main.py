@@ -80,7 +80,7 @@ midnight = latest_jst.replace(hour=0, minute=0, second=0, microsecond=0)
 date_form = DateFormatter("%-H:%M", tz=jst)
 ax1.xaxis.set_major_formatter(date_form)
 
-ax1.text(midnight, y_min - (y_max - y_min) * 0.15, f"├─{today}➞",
+ax1.text(midnight, y_min - (y_max - y_min) * 0.15, f"├─{today}→",
          fontsize=12, ha="left" , va="top", fontweight="bold")# テキストを表示（yyyy/mm/dd →）
 
 ax1.legend()
