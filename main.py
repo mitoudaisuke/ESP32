@@ -62,12 +62,6 @@ ax1.set_ylabel("gf", fontsize=14, fontweight="bold")
 ax1.set_title("LONG TREND", fontsize=14, fontweight="bold")
 ax1.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
 
-jst = pytz.timezone('Asia/Tokyo')# JSTの現在日付を取得し、フォーマット
-today = datetime.now(jst).strftime('%-m/%-d')
-date_form = DateFormatter("%-H:%M", tz=jst)# JSTタイムゾーンのフォーマット
-ax1.xaxis.set_major_formatter(date_form)
-x_min, x_max = ax1.get_xlim()# x軸の最小値と最大値を取得
-
 # タイムゾーンの設定
 jst = pytz.timezone('Asia/Tokyo')
 utc = pytz.utc
